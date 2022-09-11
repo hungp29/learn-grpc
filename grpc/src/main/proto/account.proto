@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option java_package = "com.example.grpc";
+option java_multiple_files = true;
+
+service AccountService {
+  // simple rpc
+  rpc GetAccountInfo(AccountInfoRequest) returns(AccountInfoResponse) {};
+}
+
+service DepartmentService {
+  // server side streaming rpc
+  rpc GetListAccountInDepartment(AccountsInDepartmentRequest) returns(stream AccountInfoResponse) {};
+}
+
+service ProductService {
+  // client side stream rpc
+  rpc CountProduct(stream AccountInfoRequest) returns(NumOfProductResponse) {};
+}
+
+service SalaryService {
+  // bidirectional stream rpc
+  rpc GetSalary(stream AccountInfoRequest) returns(stream SalaryResponse) {};
+}
+
+message AccountInfoRequest {
+  int32 id = 1;
+}
+
+message AccountInfoResponse {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+}
+
+message AccountsInDepartmentRequest {
+  int32 id = 1;
+}
+
+message NumOfProductResponse {
+  int32 num_of_product = 1;
+}
+
+message SalaryResponse {
+  int32 account_id = 1;
+  string account_name = 2;
+  int64 salary = 3;
+}
