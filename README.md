@@ -38,3 +38,7 @@ message HelloResponse {
 
 ### Note
 - In Java, when you define a message with optional fields, they still throw a `NullPointerException` if you set a `null` value for these fields.
+
+### Other RPCs
+- [Thrift](https://thrift.apache.org/)
+- [Kryo](https://github.com/EsotericSoftware/kryo)
